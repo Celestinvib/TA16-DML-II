@@ -17,3 +17,20 @@ WHERE calificacionedad IS NULL;
 SELECT nombre
 FROM salas
 WHERE pelicula IS NULL;
+
+/* 4.05 */
+SELECT Salas.nombre, Peliculas.nombre, Peliculas.calificacionEdad 
+FROM Salas 
+INNER JOIN Peliculas ON Salas.pelicula = Peliculas.codigo;
+WHERE Salas.pelicula IS NOT NULL;
+
+/* 4.06 */
+SELECT Peliculas.nombre, Peliculas.calificacionEdad, Salas.nombre
+FROM Peliculas
+INNER JOIN Salas ON Peliculas.codigo = Salas.pelicula
+WHERE Salas.pelicula IS NOT NULL
+
+/* 4.07 */
+Select Peliculas.nombre, Peliculas.calificacionEdad
+FROM Peliculas
+WHERE NOT EXISTS (SELECT NULL FROM Salas WHERE Peliculas.codigo = Salas.pelicula);
