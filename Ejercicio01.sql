@@ -43,10 +43,18 @@ SELECT avg(Articulos.precio), Fabricantes.nombre FROM Articulos INNER JOIN Fabri
 SELECT Fabricantes.nombre FROM Fabricantes INNER JOIN Articulos ON Fabricantes.codigo = Articulos.fabricante WHERE Articulos.precio >= 150;
 
 /* 1.15 */
-SELECT nombre, precio FROM Articulos WHERE precio IN (SELECT min(precio) FROM Articulos)
+SELECT nombre, precio FROM Articulos WHERE precio IN (SELECT min(precio) FROM Articulos);
 
 /* 1.16 */
-/* ..... */
+/* 
+SELECT articulos.nombre , articulos.precio, fabricantes.nombre  AS "Nombre Proveedor"
+FROM articulos, fabricantes
+WHERE articulos.fabricante = fabricantes.codigo;
+
+(No funciona)
+SELECT articulos.nombre , articulos.precio, fabricantes.nombre AS "Nombre Proveedor"
+FROM articulos, fabricantes
+WHERE (SELECT MAX(articulos.precio) FROM articulos, fabricantes WHERE articulos.fabricante = fabricantes.codigo GROUP BY fabricantes.nombre);*/
 
 /* 1.17 */
 INSERT INTO Articulos (nombre, precio, fabricante) VALUES ('Altavoces', 70, 2);
